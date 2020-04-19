@@ -44,7 +44,7 @@ console.log(testing +" testing ");
 console.log(testing.length +" testing ");
 
 
-testing.length = prompt("Please enter the number of characters you want for you new password.  It must be more than 8-128.");
+testing.length = prompt("Please enter the number of characters you want for you new password.  It must be 8-128.");
 //testing.length = null;
   console.log(testing.length + " password length");
 if(testing.length > 7 && testing.length < 129)
@@ -69,7 +69,7 @@ testing.length =  null;
 }
 console.log(num + "-num "+ low + "-low "+ up +"-up "+ spec +"-spec")
 }
-else if(testing.length  < 8 || testing.length > 128 ){{alert("Must be a number greater than 7 or less than 129");testing.length = null;}}
+else if(testing.length  < 8 || testing.length > 128 ){{alert("Must be a number 8-128");testing.length = null;}}
 temp = 0;
 for (var i = testing.length ; i > 0 ;i--){
   console.log("working?");
