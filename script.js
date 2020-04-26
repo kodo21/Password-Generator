@@ -1,15 +1,8 @@
 //Assignment Code
 var generateBtn = document.querySelector("#generate");
 const showPassword = document.querySelector("#password");
-// var stuff = 
-// {
-//   lowercase : ["a", ],
-//   uppercase : {},
-//   numeric : {},
-//   specialCharacters: {}
-// };
+var stuff = [getRandomNumber(), getRandomLower(), getRandomUpper(), getRandomSymbol()];
 var testing = [];
-var symbols = ["!", "@","#","$", "%", "^", "&", "*"];
 var  caseCheck = 4;
 var temp = 0;
 var passwordText;
@@ -17,318 +10,335 @@ var num;
 var low;
 var up;
 var spec;
+var toast;
+var toast1;
+var toast2;
+var toast3;
 
-
-//Write password to the #password input
 function writePassword() {
   
   var password = generatePassword();
   passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
-//testtest();
-// Add event listener to generate button
 document.getElementById("generate").addEventListener("click", function()
-{ 
-
+{
  writePassword();
 });
+function getRandomNumber() {
+  return String.fromCharCode(Math.floor(Math.random() * 10) + 48).toString();
+}
+function getRandomLower() {
+  return String.fromCharCode(Math.floor(Math.random() * 26) + 97).toString();
+}
+function getRandomUpper() {
+  return String.fromCharCode(Math.floor(Math.random() * 26) + 65).toString();
+}
+function getRandomSymbol() {
+  var symbols = ["!", "@","#","$", "%", "^", "&", "*"];
+  //console.log(symbols.indexOf("@") + "@");
+  return symbols[Math.floor(Math.random() * symbols.length ).toString()]
+}
+
+// Add event listener to generate button
+
 
 function generatePassword()
 {
-//stesting = [];
- 
-  //testing.length = charInput;
 
 console.log(testing +" testing ");
 console.log(testing.length +" testing ");
 
-
 testing.length = prompt("Please enter the number of characters you want for you new password.  It must be 8-128.");
-//testing.length = null;
-  console.log(testing.length + " password length");
+
+console.log(testing.length + " password length");
+
 if(testing.length > 7 && testing.length < 129)
 {
   caseCheck = 4;
   var numbers = confirm("Do you want numbers in your password?");//3
 if (!numbers){ num = false; caseCheck--;}
 else {num = true;}
+
   var lowerCases = confirm("Do you want lowercases in your password?");
-  if (!lowerCases){ low = false;caseCheck--;}
+if (!lowerCases){ low = false;caseCheck--;}
 else {low = true;}
+
   var upperCases = confirm("Do you want uppercases in your password?");
-  if (!upperCases){ up = false;caseCheck--;}
+if (!upperCases){ up = false;caseCheck--;}
 else {up = true;}
+
   var special = confirm("Do you want special characters in your password?");
-  if (!special){ spec = false;caseCheck--;}
+if (!special){ spec = false;caseCheck--;}
 else {spec = true;}
-  console.log(numbers + lowerCases + upperCases + special + " true or null ");
+
+console.log(caseCheck + " caseCheck");
+console.log(numbers + lowerCases + upperCases + special + " true or null ");
+
 if(!numbers && !lowerCases && !upperCases && !special){
   alert("Must choose one type password case.");
-testing.length =  null;
+  testing.length =  null;
 }
 console.log(num + "-num "+ low + "-low "+ up +"-up "+ spec +"-spec")
 }
+
 else if(testing.length  < 8 || testing.length > 128 ){{alert("Must be a number 8-128");testing.length = null;}}
-temp = 0;
-for (var i = testing.length ; i > 0 ;i--){
+//end of alerts
+
+temp = 0; // this resets value
+
+for (var i = testing.length ; i > 0 ;i--)
+{
+  stuff = [getRandomNumber(), getRandomLower(), getRandomUpper(), getRandomSymbol()];
   console.log("working?");
-  var randomNumberPicked = Math.floor(Math.random() * caseCheck);
-  if(num && low && up && spec)
-  { if(randomNumberPicked === 3)
-    { 
-      testing[temp] = getRandomNumber();
-      temp++;
-    }
-    else if(randomNumberPicked === 2)
-    { 
-      testing[temp] = getRandomLower();
-      temp++;
-    }
-    else if(randomNumberPicked === 1)
-    { 
-      testing[temp] = getRandomUpper();
-      temp++;
-    }
-    else if(randomNumberPicked === 0)
-    { 
-      testing[temp] = getRandomSymbol();
-      temp++;
-    }
-  }//end
-  else if(num && low && up && !spec){
+  
+  
+  
+ var dynamicIndex = 0;
+  if(!num)
+  {
+    toast = stuff[0];
+    stuff.splice(stuff.indexOf(toast), 1);
    
-    if(randomNumberPicked === 2)
-    { 
-      testing[temp] = getRandomLower();
-      temp++;
-    }
-    else if(randomNumberPicked === 1)
-    { 
-      testing[temp] = getRandomUpper();
-      temp++;
-    }
-    else if(randomNumberPicked === 0)
-    { 
-      testing[temp] = getRandomNumber();
-      temp++;
-    }
-  }//end
-    else if(num && low && !up && spec){
-   
-      if(randomNumberPicked === 2)
-      { 
-        testing[temp] = getRandomLower();
-        temp++;
-      }
-      else if(randomNumberPicked === 1)
-      { 
-        testing[temp] = getRandomSymbol();
-        temp++;
-      }
-      else if(randomNumberPicked === 0)
-      { 
-        testing[temp] = getRandomNumber();
-        temp++;
-      }
-    }//end
-    else if(num && !low && up && spec){
-   
-      if(randomNumberPicked === 2)
-      { 
-        testing[temp] = getRandomUpper();
-        temp++;
-      }
-      else if(randomNumberPicked === 1)
-      { 
-        testing[temp] = getRandomSymbol();
-        temp++;
-      }
-      else if(randomNumberPicked === 0)
-      { 
-        testing[temp] = getRandomNumber();
-        temp++;
-      }
-    }//end
-    else if(!num && low && up && spec){
-   
-      if(randomNumberPicked === 2)
-      { 
-        testing[temp] = getRandomUpper();
-        temp++;
-      }
-      else if(randomNumberPicked === 1)
-      { 
-        testing[temp] = getRandomSymbol();
-        temp++;
-      }
-      else if(randomNumberPicked === 0)
-      { 
-        testing[temp] = getRandomLower();
-        temp++;
-      }
-    }//end
-    else if(!num && !low && up && spec){
-   
-       if(randomNumberPicked === 1)
-      { 
-        testing[temp] = getRandomSymbol();
-        temp++;
-      }
-      else if(randomNumberPicked === 0)
-      { 
-        testing[temp] = getRandomUpper();
-        temp++;
-      }
-    }//end
-    else if(num && low && !up && !spec){
-   
-      if(randomNumberPicked === 1)
-     { 
-       testing[temp] = getRandomNumber();
-       temp++;
-     }
-     else if(randomNumberPicked === 0)
-     { 
-       testing[temp] = getRandomLower();
-       temp++;
-     }
-   }//end
-   else if(!num && low && up && !spec){
-   
-    if(randomNumberPicked === 1)
-   { 
-     testing[temp] = getRandomUpper();
-     temp++;
-   }
-   else if(randomNumberPicked === 0)
-   { 
-     testing[temp] = getRandomLower();
-     temp++;
-   }
- }//end
- else if(num && !low && !up && spec){
-   
-  if(randomNumberPicked === 1)
- { 
-   testing[temp] = getRandomNumber();
-   temp++;
- }
- else if(randomNumberPicked === 0)
- { 
-   testing[temp] = getRandomSymbol();
-   temp++;
- }
-}//end
-else if(!num && low && !up && spec){
-   
-  if(randomNumberPicked === 1)
- { 
-   testing[temp] = getRandomLower();
-   temp++;
- }
- else if(randomNumberPicked === 0)
- { 
-   testing[temp] = getRandomSymbol();
-   temp++;
- }
-}//end
-else if(num && !low && up && !spec){
-   
-  if(randomNumberPicked === 1)
- { 
-   testing[temp] = getRandomNumber();
-   temp++;
- }
- else if(randomNumberPicked === 0)
- { 
-   testing[temp] = getRandomUpper();
-   temp++;
- }
-}//end
-//start singles
-else if(!num && !low && !up && spec){
-   
-if(randomNumberPicked === 0)
- { 
-   testing[temp] = getRandomSymbol();
-   temp++;
- }
-}//end
-else if(!num && !low && up && !spec){
-   
-if(randomNumberPicked === 0)
- { 
-   testing[temp] = getRandomUpper();
-   temp++;
- }
-}//end
-else if(!num && low && !up && !spec){
-   
-  if(randomNumberPicked === 0)
-   { 
-     testing[temp] = getRandomLower();
-     temp++;
-   }
-  }//end
-else if(num && !low && !up && !spec){
-   
-  if(randomNumberPicked === 0)
-    { 
-       testing[temp] = getRandomNumber();
-       temp++;
-    }
-  }//end
+    dynamicIndex = 0;
+  }else{dynamicIndex++}
+  if(!low)
+  {
+    toast1 = stuff[dynamicIndex];
+    stuff.splice(stuff.indexOf(toast1), 1);
+
+  }
+  else{dynamicIndex++}
+  if(!up)
+  {
+    toast2 = stuff[dynamicIndex];
+    stuff.splice(stuff.indexOf(toast2), 1);
     
- 
-}
-console.log(temp);
-console.log(testing.length);
-    return testing;
-}
+  }
+  else{dynamicIndex++}
+  if(!spec)
+  {
+    toast3 = stuff[dynamicIndex];
+    stuff.splice(stuff.indexOf(toast3), 1);
+  }
+  console.log(num + "-num "+ low + "-low "+ up +"-up "+ spec +"-spec")
+  console.log(stuff);
 
-// function testtest() {
-  
-  
-//   testing.length = charInput;
-//   console.log(charInput);
-//   console.log(testing);
-//   console.log(temp);
-//   for (var i = charInput ; i > 0 ;i--){
-//     console.log("working?");
-//     testing[temp] = getRandomUpper();
-//     temp++;
-//   }
-//   return testing;
-// }
-function randomolder(){
-
-  randomNumber.Math.floor(Math.random() * 4) + 1;
-  console.log(randomNumber);
-
-if(randomNumber === 1){
-  getRandomLower();
+console.log(stuff[0] + stuff[1] + stuff[2]+ stuff[3]);
+  var randomNumberPicked = Math.floor(Math.random() * caseCheck);
+  //var trial = stuff[randomNumberPicked];
+    testing[temp] = stuff[randomNumberPicked];
+    temp++;
+    console.log(randomNumberPicked);
 }
-if(randomNumber === 2){
-  getRandomUpper();
+return testing.join("");
 }
-if(randomNumber === 3){
-  getRandomNumber();
-}
-if(randomNumber === 4){
-  getRandomSymbol();
-}
-}
-function getRandomLower() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 97).toString();
-}
-
-function getRandomUpper() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 65).toString();
-}
-function getRandomNumber() {
-  return String.fromCharCode(Math.floor(Math.random() * 10) + 48).toString();
-}
-function getRandomSymbol() {
-  return symbols[Math.floor(Math.random() * symbols.length ).toString()]
-}
+// for (var i = testing.length ; i > 0 ;i--){
+//   //console.log("working?");
+//   var randomNumberPicked = Math.floor(Math.random() * caseCheck);
+//   //console.log(caseCheck + " caseCheck");
+//   if(num && low && up && spec)
+//   { if(randomNumberPicked === 3)
+//     { 
+//       testing[temp] = getRandomNumber();
+//       temp++;
+//     }
+//     else if(randomNumberPicked === 2)
+//     { 
+//       testing[temp] = getRandomLower();
+//       temp++;
+//     }
+//     else if(randomNumberPicked === 1)
+//     { 
+//       testing[temp] = getRandomUpper();
+//       temp++;
+//     }
+//     else if(randomNumberPicked === 0)
+//     { 
+//       testing[temp] = getRandomSymbol();
+//       temp++;
+//     }
+//   }//end
+//   else if(num && low && up && !spec){
+   
+//     if(randomNumberPicked === 2)
+//     { 
+//       testing[temp] = getRandomLower();
+//       temp++;
+//     }
+//     else if(randomNumberPicked === 1)
+//     { 
+//       testing[temp] = getRandomUpper();
+//       temp++;
+//     }
+//     else if(randomNumberPicked === 0)
+//     { 
+//       testing[temp] = getRandomNumber();
+//       temp++;
+//     }
+//   }//end
+//     else if(num && low && !up && spec){
+   
+//       if(randomNumberPicked === 2)
+//       { 
+//         testing[temp] = getRandomLower();
+//         temp++;
+//       }
+//       else if(randomNumberPicked === 1)
+//       { 
+//         testing[temp] = getRandomSymbol();
+//         temp++;
+//       }
+//       else if(randomNumberPicked === 0)
+//       { 
+//         testing[temp] = getRandomNumber();
+//         temp++;
+//       }
+//     }//end
+//     else if(num && !low && up && spec){
+   
+//       if(randomNumberPicked === 2)
+//       { 
+//         testing[temp] = getRandomUpper();
+//         temp++;
+//       }
+//       else if(randomNumberPicked === 1)
+//       { 
+//         testing[temp] = getRandomSymbol();
+//         temp++;
+//       }
+//       else if(randomNumberPicked === 0)
+//       { 
+//         testing[temp] = getRandomNumber();
+//         temp++;
+//       }
+//     }//end
+//     else if(!num && low && up && spec){
+   
+//       if(randomNumberPicked === 2)
+//       { 
+//         testing[temp] = getRandomUpper();
+//         temp++;
+//       }
+//       else if(randomNumberPicked === 1)
+//       { 
+//         testing[temp] = getRandomSymbol();
+//         temp++;
+//       }
+//       else if(randomNumberPicked === 0)
+//       { 
+//         testing[temp] = getRandomLower();
+//         temp++;
+//       }
+//     }//end
+//     else if(!num && !low && up && spec){
+   
+//        if(randomNumberPicked === 1)
+//       { 
+//         testing[temp] = getRandomSymbol();
+//         temp++;
+//       }
+//       else if(randomNumberPicked === 0)
+//       { 
+//         testing[temp] = getRandomUpper();
+//         temp++;
+//       }
+//     }//end
+//     else if(num && low && !up && !spec){
+   
+//       if(randomNumberPicked === 1)
+//      { 
+//        testing[temp] = getRandomNumber();
+//        temp++;
+//      }
+//      else if(randomNumberPicked === 0)
+//      { 
+//        testing[temp] = getRandomLower();
+//        temp++;
+//      }
+//    }//end
+//    else if(!num && low && up && !spec){
+   
+//     if(randomNumberPicked === 1)
+//    { 
+//      testing[temp] = getRandomUpper();
+//      temp++;
+//    }
+//    else if(randomNumberPicked === 0)
+//    { 
+//      testing[temp] = getRandomLower();
+//      temp++;
+//    }
+//  }//end
+//  else if(num && !low && !up && spec){
+   
+//   if(randomNumberPicked === 1)
+//  { 
+//    testing[temp] = getRandomNumber();
+//    temp++;
+//  }
+//  else if(randomNumberPicked === 0)
+//  { 
+//    testing[temp] = getRandomSymbol();
+//    temp++;
+//  }
+// }//end
+// else if(!num && low && !up && spec){
+   
+//   if(randomNumberPicked === 1)
+//  { 
+//    testing[temp] = getRandomLower();
+//    temp++;
+//  }
+//  else if(randomNumberPicked === 0)
+//  { 
+//    testing[temp] = getRandomSymbol();
+//    temp++;
+//  }
+// }//end
+// else if(num && !low && up && !spec){
+   
+//   if(randomNumberPicked === 1)
+//  { 
+//    testing[temp] = getRandomNumber();
+//    temp++;
+//  }
+//  else if(randomNumberPicked === 0)
+//  { 
+//    testing[temp] = getRandomUpper();
+//    temp++;
+//  }
+// }//end
+// //start singles
+// else if(!num && !low && !up && spec){
+   
+// if(randomNumberPicked === 0)
+//  { 
+//    testing[temp] = getRandomSymbol();
+//    temp++;
+//  }
+// }//end
+// else if(!num && !low && up && !spec){
+   
+// if(randomNumberPicked === 0)
+//  { 
+//    testing[temp] = getRandomUpper();
+//    temp++;
+//  }
+// }//end
+// else if(!num && low && !up && !spec){
+   
+//   if(randomNumberPicked === 0)
+//    { 
+//      testing[temp] = getRandomLower();
+//      temp++;
+//    }
+//   }//end
+// else if(num && !low && !up && !spec){
+   
+//   if(randomNumberPicked === 0)
+//     { 
+//        testing[temp] = getRandomNumber();
+//        temp++;
+//     }
+//   }//end
